@@ -1,0 +1,5 @@
+pip install Selenium
+pip install PySimpleGUI
+pip install pyautogui
+pip install pandas
+pip install openpyxl

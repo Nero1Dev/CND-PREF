@@ -29,6 +29,7 @@ while True:
         caminho = sg.popup_get_folder('Por favor onde salvar')
     
     if events == 'Baixar' and values['RADIO01'] == True:
+        janela.hide()
         browser = webdriver.Firefox()
 
         browser.implicitly_wait(5)
@@ -75,8 +76,9 @@ while True:
         press('enter')
         
         browser.quit()
-        
+    janela.un_hide()
     if events == 'Baixar' and values['RADIO02'] == True:
+        janela.hide()
         for v in range(0, 3):
             
             x = pd.read_excel('/home/nero1dev/Codes/CND-PREF/Cnpj.xlsx')
@@ -131,7 +133,7 @@ while True:
             press('enter')
                     
             browser.quit()
-        
+        janela.un_hide()
     if events == sg.WIN_CLOSED or events == 'Quit':
         break
         

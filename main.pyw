@@ -4,8 +4,10 @@ from PySimpleGUI import PySimpleGUI as sg
 from pyautogui import press, hotkey, write
 import pandas as pd
 from time import sleep
-
+from datetime import datetime
     
+now = datetime.now()
+
 # Good themes: SystemDefault1 SystemDefault, Tanblue
 
 sg.theme('SystemDefault')
@@ -29,7 +31,6 @@ while True:
         caminho = sg.popup_get_folder('Por favor onde salvar')
     
     if events == 'Baixar' and values['RADIO01'] == True:
-        janela.hide()
         browser = webdriver.Firefox()
 
         browser.implicitly_wait(5)
@@ -56,14 +57,15 @@ while True:
         press('enter')
 
         sleep(1.5)
-        write('CND PREFEITURA')
+        write(f'CND PREFEITURA {now.month} {now.year}')
         sleep(3)
 
-        for c in range(0, 6):
-            press('tab')
-            sleep(0.6)
+        # for c in range(0, 6):
+        press('f4')
+        sleep(0.6)
+        hotkey('ctrl', 'a')
         sleep(1)
-        press('enter')
+        press('delete')
         sleep(2)
         write(values['caminho'])
         sleep(2)
@@ -76,9 +78,7 @@ while True:
         press('enter')
         
         browser.quit()
-    janela.un_hide()
     if events == 'Baixar' and values['RADIO02'] == True:
-        janela.hide()
         for v in range(0, 3):
             
             x = pd.read_excel('/home/nero1dev/Codes/CND-PREF/Cnpj.xlsx')
@@ -115,11 +115,12 @@ while True:
             write(razão)
             sleep(3)
             
-            for c in range(0, 6):
-                press('tab')
-                sleep(0.6)
+            # for c in range(0, 6):
+            press('f4')
+            sleep(0.6)
+            hotkey('ctrl', 'a')
             sleep(1)
-            press('enter')
+            press('delete')
             sleep(2)
             if v == 0:
                 write(values['caminho'])
@@ -133,7 +134,6 @@ while True:
             press('enter')
                     
             browser.quit()
-        janela.un_hide()
     if events == sg.WIN_CLOSED or events == 'Quit':
         break
         
